@@ -1,31 +1,27 @@
-const createStack = () => {
-    const stack = {
-        tail: null,
-        push(data) {
-            const prev = stack.tail
-            stack.tail = { prev, data }
-        },
-        pop() {
-            const element = stack.tail
-            if (!element) return
-            stack.tail = element.prev
-            return element.data
-        },
-        *traverse(node = stack.tail) {
-            yield node
-            if (node && node.prev !== null && typeof (node.prev) === "object") {
-                yield* stack.traverse(node.prev)
-            }
-        },
-        *[Symbol.iterator]() {
-            for (const node of stack.traverse()) {
-                yield node && node.data
-            }
-        },
-    }
-
-    return stack
-}
+const createStack = () => ({
+    tail: null,
+    push(data) {
+        const prev = this.tail
+        this.tail = { prev, data }
+    },
+    pop() {
+        const element = this.tail
+        if (!element) return
+        this.tail = element.prev
+        return element.data
+    },
+    *traverse(node = this.tail) {
+        yield node
+        if (node && node.prev !== null && typeof (node.prev) === "object") {
+            yield* this.traverse(node.prev)
+        }
+    },
+    *[Symbol.iterator]() {
+        for (const node of this.traverse()) {
+            yield node && node.data
+        }
+    },
+})
 
 const stack = createStack()
 stack.push(1)
