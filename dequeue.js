@@ -1,55 +1,51 @@
-const createDequeue = () => {
-  const dequeue = {
-    head: null,
-    tail: null,
-    push(item) {
-      const { tail } = dequeue
-      const node = { next: null, prev: tail, item }
-      if (tail) {
-        tail.next = node
-        dequeue.tail = node
-      } else {
-        dequeue.head = node
-        dequeue.tail = node
-      }
-    },
-    pop() {
-      const { tail } = dequeue
-      if (!tail) return
-      if (dequeue.head === tail) {
-        dequeue.head = null
-        dequeue.tail = null
-      } else {
-        dequeue.tail = tail.prev
-      }
-      return tail.item
-    },
-    shift() {
-      const { head } = dequeue
-      if (!head) return
-      if (dequeue.tail === head) {
-        dequeue.head = null
-        dequeue.tail = null
-      } else {
-        dequeue.head = head.next
-      }
-      return head.item
-    },
-    unshift(item) {
-      const { head } = dequeue
-      const node = { prev: null, next: head, item }
-      if (head) {
-        head.prev = node
-        dequeue.head = node
-      } else {
-        dequeue.head = node
-        dequeue.tail = node
-      }
-    },
-  }
-
-  return dequeue
-}
+const createDequeue = () => ({
+  head: null,
+  tail: null,
+  push(item) {
+    const { tail } = this
+    const node = { next: null, prev: tail, item }
+    if (tail) {
+      tail.next = node
+      this.tail = node
+    } else {
+      this.head = node
+      this.tail = node
+    }
+  },
+  pop() {
+    const { tail } = this
+    if (!tail) return
+    if (this.head === tail) {
+      this.head = null
+      this.tail = null
+    } else {
+      this.tail = tail.prev
+    }
+    return tail.item
+  },
+  shift() {
+    const { head } = this
+    if (!head) return
+    if (this.tail === head) {
+      this.head = null
+      this.tail = null
+    } else {
+      this.head = head.next
+    }
+    return head.item
+  },
+  unshift(item) {
+    const { head } = this
+    const node = { prev: null, next: head, item }
+    if (head) {
+      head.prev = node
+      this.head = node
+    } else {
+      this.head = node
+      this.tail = node
+    }
+  },
+})
 
 const dequeue = createDequeue()
 

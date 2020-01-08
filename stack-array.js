@@ -1,21 +1,17 @@
-const createStack = () => {
-    const stack = {
-        items: [],
-        push(item) {
-            return stack.items.push(item)
-        },
-        pop() {
-            return stack.items.pop()
-        },
-        *[Symbol.iterator]() {
-            for (const node of stack.items) {
-                yield node
-            }
-        },
-    }
-
-    return stack
-}
+const createStack = () => ({
+    items: [],
+    push(item) {
+        return this.items.push(item)
+    },
+    pop() {
+        return this.items.pop()
+    },
+    *[Symbol.iterator]() {
+        for (const node of this.items) {
+            yield node
+        }
+    },
+})
 
 const stack = createStack();
 stack.push(1);

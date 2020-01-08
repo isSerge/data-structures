@@ -1,33 +1,29 @@
-const createQueue = () => {
-  const queue = {
-    head: null,
-    tail: null,
-    put(item) {
-      const node = { next: null, item }
-      const { tail } = queue
-      if (tail) {
-        tail.next = node
-        queue.tail = node
-      } else {
-        queue.head = node
-        queue.tail = node
-      }
-    },
-    pick() {
-      const { head } = queue
-      if (!head) return
-      if (queue.tail === head) {
-        queue.head = null
-        queue.tail = null
-      } else {
-        queue.head = head.next
-      }
-      return head.item
-    },
-  }
-
-  return queue
-}
+const createQueue = () => ({
+  head: null,
+  tail: null,
+  put(item) {
+    const node = { next: null, item }
+    const { tail } = this
+    if (tail) {
+      tail.next = node
+      this.tail = node
+    } else {
+      this.head = node
+      this.tail = node
+    }
+  },
+  pick() {
+    const { head } = this
+    if (!head) return
+    if (this.tail === head) {
+      this.head = null
+      this.tail = null
+    } else {
+      this.head = head.next
+    }
+    return head.item
+  },
+})
 
 const queue = createQueue()
 
