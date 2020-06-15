@@ -31,7 +31,6 @@ const createLinkedList = () => ({
   prepend(data) {
     const node = createNode(data, this.head);
     this.head = node;
-
     this.length++;
   },
   remove(data) {
