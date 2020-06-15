@@ -73,16 +73,3 @@ const createDoublyLinkedList = () => ({
 module.exports = {
   createDoublyLinkedList,
 };
-
-// const list = createDoublyLinkedList()
-// list.append(1)
-// list.append(2)
-// list.append(3)
-// list.prepend(4)
-// list.remove(3)
-// console.log(list.find(1)) // { data: 1 }
-// // console.log(list.getNth(0)) // { data: 4 }
-// console.log(list.length) // 3
-// // console.log(list.head) // 3
-// console.log([...list]) // [4, 1, 2]
-
