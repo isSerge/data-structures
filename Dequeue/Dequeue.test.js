@@ -63,7 +63,7 @@ it("Should shift elements from dequeue", () => {
   expect(dequeue.length).toBe(2);
 });
 
-it("Should return null if pick from empty dequeue", () => {
+it("Should return null if pop from empty dequeue", () => {
   const dequeue = createDequeue();
 
   expect(dequeue.head).toBeNull();
