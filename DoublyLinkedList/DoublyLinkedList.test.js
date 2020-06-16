@@ -1,6 +1,5 @@
 const { createDoublyLinkedList } = require("./DoublyLinkedList");
 
-
 it("Should create empty linked list", () => {
     const list = createDoublyLinkedList();
     expect(list.length).toBe(0);
