@@ -40,3 +40,13 @@ it("Should return null if pick from empty queue", () => {
     expect(queue.length).toBe(0);
     expect(queue.pick()).toBeNull();
 });
+
+it("Should support iterable", () => {
+    const queue = createQueue();
+    
+    queue.put(1);
+    queue.put(2);
+    queue.put(3);
+
+    expect([...queue]).toEqual([1, 2, 3]);
+});
