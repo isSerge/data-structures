@@ -10,6 +10,7 @@ const createQueue = () => ({
       node = node.next;
     }
   },
+  // adds element to the end
   put(item) {
     const node = { next: null, item };
     const { tail } = this;
@@ -22,6 +23,7 @@ const createQueue = () => ({
     }
     this.length++;
   },
+  // takes element from the start
   pick() {
     const { head } = this;
     if (!head) return null;

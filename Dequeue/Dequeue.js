@@ -10,6 +10,7 @@ const createDequeue = () => ({
       node = node.next;
     }
   },
+  // adds element to the end
   push(item) {
     const { tail } = this;
     const node = { next: null, prev: tail, item };
@@ -22,6 +23,7 @@ const createDequeue = () => ({
     }
     this.length++;
   },
+  // takes element from the end
   pop() {
     const { tail } = this;
     if (!tail) return null;
@@ -34,6 +36,7 @@ const createDequeue = () => ({
     this.length--;
     return tail.item;
   },
+  // takes element from the start
   shift() {
     const { head } = this;
     if (!head) return;
@@ -46,6 +49,7 @@ const createDequeue = () => ({
     this.length--;
     return head.item;
   },
+  // adds element to the start
   unshift(item) {
     const { head } = this;
     const node = { prev: null, next: head, item };
