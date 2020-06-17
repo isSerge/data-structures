@@ -119,3 +119,13 @@ it("Should return table values", () => {
 
     expect(table.values()).toEqual([1, 2, 3])
 });
+
+it("Should support iterable", () => {
+    const table = createHashTable();
+
+    table.set('first', 1);
+    table.set('second', 2);
+    table.set('third', 3);
+
+    expect([...table]).toEqual([1, 2, 3]);
+});

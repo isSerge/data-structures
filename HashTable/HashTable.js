@@ -1,8 +1,12 @@
 const DEFAULT_STORAGE_SIZE = 140;
 
-const defaultHashing = (key, max) => [...key].reduce((acc, x) => acc + x.charCodeAt(0), 0) % max;
+const defaultHashing = (key, max) =>
+    [...key].reduce((acc, x) => acc + x.charCodeAt(0), 0) % max;
 
-const createHashTable = (storageMaxSize = DEFAULT_STORAGE_SIZE, getHash = defaultHashing) => ({
+const createHashTable = (
+    storageMaxSize = DEFAULT_STORAGE_SIZE,
+    getHash = defaultHashing
+) => ({
     storage: Array(storageMaxSize).fill([]),
     map: Object.create(null),
     size: 0,
@@ -10,7 +14,7 @@ const createHashTable = (storageMaxSize = DEFAULT_STORAGE_SIZE, getHash = defaul
         const hash = getHash(key, storageMaxSize);
         this.map[key] = hash;
         const storageItem = this.storage[hash];
-        const node = storageItem.find(x => x.key === key);
+        const node = storageItem.find((x) => x.key === key);
 
         if (!node) {
             this.storage[hash] = [...storageItem, { key, value }];
@@ -22,7 +26,7 @@ const createHashTable = (storageMaxSize = DEFAULT_STORAGE_SIZE, getHash = defaul
     get(key) {
         const hash = getHash(key, storageMaxSize);
         const storageItem = this.storage[hash];
-        const node = storageItem.find(x => x.key === key);
+        const node = storageItem.find((x) => x.key === key);
         return node && node.value;
     },
     has(key) {
@@ -32,10 +36,10 @@ const createHashTable = (storageMaxSize = DEFAULT_STORAGE_SIZE, getHash = defaul
         delete this.map[key];
         const hash = getHash(key, storageMaxSize);
         const storageItem = this.storage[hash];
-        const node = storageItem.find(x => x.key === key);
+        const node = storageItem.find((x) => x.key === key);
 
         if (node) {
-            this.storage[hash] = storageItem.filter(x => x.key !== key);
+            this.storage[hash] = storageItem.filter((x) => x.key !== key);
             return node;
         }
 
@@ -50,12 +54,22 @@ const createHashTable = (storageMaxSize = DEFAULT_STORAGE_SIZE, getHash = defaul
         return Object.keys(this.map);
     },
     values() {
-        return Object.values(this.map).flatMap(hash => this.storage[hash].map(({ value }) => value))
+        return Object.values(this.map).flatMap((hash) =>
+            this.storage[hash].map(({ value }) => value)
+        );
     },
-})
+    *[Symbol.iterator]() {
+        const valuesIterable = Object.values(this.map).flatMap((hash) =>
+            this.storage[hash].map(({ value }) => value))
+
+        for (const value of valuesIterable) {
+            yield value;
+        }
+    },
+});
 
 module.exports = {
     DEFAULT_STORAGE_SIZE,
     defaultHashing,
     createHashTable,
-}
+};
