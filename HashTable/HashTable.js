@@ -13,7 +13,7 @@ const createHashTable = (storageMaxSize = DEFAULT_STORAGE_SIZE, getHash = defaul
         const node = storageItem.find(x => x.key === key);
 
         if (!node) {
-            storageItem.push({ key, value });
+            this.storage[hash] = [...storageItem, { key, value }];
             this.size++;
         } else {
             node.value = value;
@@ -26,7 +26,7 @@ const createHashTable = (storageMaxSize = DEFAULT_STORAGE_SIZE, getHash = defaul
         return node && node.value;
     },
     has(key) {
-        return !!this.map[key];
+        return Object.keys(this.map).includes(key);
     },
     delete(key) {
         delete this.map[key];
@@ -48,6 +48,9 @@ const createHashTable = (storageMaxSize = DEFAULT_STORAGE_SIZE, getHash = defaul
     },
     keys() {
         return Object.keys(this.map);
+    },
+    values() {
+        return Object.values(this.map).flatMap(hash => this.storage[hash].map(({ value }) => value))
     },
 })
 

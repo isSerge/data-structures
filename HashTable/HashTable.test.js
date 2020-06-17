@@ -109,3 +109,13 @@ it("Should return table keys", () => {
 
     expect(table.keys()).toEqual(['first', 'second']);
 });
+
+it("Should return table values", () => {
+    const table = createHashTable();
+
+    table.set('first', 1);
+    table.set('second', 2);
+    table.set('third', 3);
+
+    expect(table.values()).toEqual([1, 2, 3])
+});
