@@ -66,6 +66,9 @@ const createHashTable = (
             yield value;
         }
     },
+    forEach(callback) {
+        return Object.values(this.map).flatMap((hash) => this.storage[hash].map(({ value, key }) => callback(value, key, this)))
+    },
 });
 
 module.exports = {

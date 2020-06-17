@@ -15,7 +15,6 @@ it("Should create hash table with provided storage size", () => {
     expect(table.storage.length).toBe(NEW_STORAGE_SIZE);
 });
 
-
 it("Should set key and value", () => {
     const table = createHashTable();
 
